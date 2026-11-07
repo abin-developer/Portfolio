@@ -1734,7 +1734,7 @@
         const svg = band.querySelector(".toolcloud-lines");
         const statusEl = band.querySelector(".toolcloud-status");
         const seen = new Set();
-        const lists = categories.map((c) => c.chips.filter((chip) => { const t = chip.textContent.trim(); if (seen.has(t)) return false; seen.add(t); return true; }));
+        const lists = categories.map((c) => c.chips.filter((chip) => { const t = chip.textContent.replace("↗", "").trim(); if (seen.has(t)) return false; seen.add(t); return true; }));
 
         const legendBtns = categories.map((c, ci) => {
           const btn = document.createElement("button");
@@ -1756,8 +1756,8 @@
           const pill = document.createElement("button");
           pill.type = "button"; pill.className = "tool-pill"; pill.dataset.cat = ci;
           pill.style.setProperty("--i", pills.length);
-          pill.innerHTML = `<span class="ic" aria-hidden="true">${categories[ci].icon}</span>${chip.textContent.trim()}`;
-          pill.setAttribute("aria-label", `${chip.textContent.trim()} — ${categories[ci].name}`);
+          pill.innerHTML = `<span class="ic" aria-hidden="true">${categories[ci].icon}</span>${chip.textContent.replace("↗", "").trim()}`;
+          pill.setAttribute("aria-label", `${chip.textContent.replace("↗", "").trim()} — ${categories[ci].name}`);
           pill._chip = chip;
           li.appendChild(pill); cloud.appendChild(li); pills.push(pill);
         });
