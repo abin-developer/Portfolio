@@ -7,14 +7,14 @@ window.PORTFOLIO.experience = {
   // Oldest first. Set `current: true` on the present role.
   roles: [
     {
-      period: "2019 — 2021",
+      period: "Aug 2019 — Jul 2021",
       title: "Software Associate",
       company: "Xcubated Business Solutions",
       description: "Started out building Angular frontend features for ATMA, learning delivery through hands-on implementation, unit testing, defect fixes, and close coordination with backend developers.",
       tools: ["Angular 8", "HTML", "CSS", "Bitbucket"],
     },
     {
-      period: "2021 — Dec 2022",
+      period: "Aug 2021 — Dec 2022",
       title: "Software Engineer",
       company: "InApp Information Technologies · Technopark",
       description: "Expanded into React web and mobile projects: building responsive features, integrating REST APIs, clarifying requirements with client and backend teams, presenting demos, writing tests, and resolving defects.",
