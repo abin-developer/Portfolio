@@ -39,4 +39,5 @@ window.PORTFOLIO.toolLinks = {
   "Java / Spring": "https://spring.io",
   "MongoDB": "https://www.mongodb.com",
   "Agile": "https://agilemanifesto.org",
+  "Figma": "https://www.figma.com",
 };
