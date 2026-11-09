@@ -11,7 +11,7 @@ window.PORTFOLIO.education = {
       degree: "B.Tech",
       major: "Information Technology Engineering",
       school: "Government Engineering College, Barton Hill",
-      meta: ["Thiruvananthapuram, Kerala", "Kerala Technological University"],
+      meta: ["Thiruvananthapuram, Kerala", "APJ Abdul Kalam Technological University"],
       // Large outlined text that drifts behind the entry
       backgroundText: "B.TECH · INFORMATION TECHNOLOGY ·",
     },

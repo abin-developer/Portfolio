@@ -116,9 +116,35 @@
             <h3>${esc(it.name)}</h3>
             <p>${esc(it.description)}</p>
             ${chips(it.tools)}
+            ${it.details ? `<button class="project-more" type="button" data-project="${i}" aria-haspopup="dialog">View details <span aria-hidden="true">→</span></button>` : ""}
           </article>`).join("")}
         </div>
       </div>`;
+  };
+
+  // Project details panel content (used by the project-details dialog in index.html)
+  window.PORTFOLIO.renderProjectDetails = (i) => {
+    const items = (D.projects || {}).items || [];
+    const it = items[i]; if (!it) return "";
+    const d = it.details || {};
+    return `
+      <header class="pd-head">
+        <div class="pd-kicker">${pad(i + 1)} — ${esc(it.area)}</div>
+        <h2 class="pd-title" id="pd-title">${esc(it.name)}</h2>
+        <div class="pd-meta">
+          ${it.client ? `<div><span>Client</span><b>${esc(it.client)}</b></div>` : ""}
+          ${d.role ? `<div><span>My role</span><b>${esc(d.role)}</b></div>` : ""}
+          ${d.platform ? `<div><span>Platform</span><b>${esc(d.platform)}</b></div>` : ""}
+          ${d.period ? `<div><span>Period</span><b>${esc(d.period)}</b></div>` : ""}
+        </div>
+      </header>
+      ${d.overview ? `<section class="pd-block" style="--b:0"><h3>Overview</h3><p>${esc(d.overview)}</p></section>` : ""}
+      ${(d.modules || []).length ? `<section class="pd-block" style="--b:1"><h3>What the product does</h3><div class="pd-modules">${d.modules.map((m) => `<div class="pd-module"><b>${esc(m.name)}</b><p>${esc(m.text)}</p></div>`).join("")}</div></section>` : ""}
+      ${(d.contributions || []).length ? `<section class="pd-block" style="--b:2"><h3>What I did</h3><ol class="pd-list">${d.contributions.map((c, k) => `<li style="--k:${k}">${esc(c)}</li>`).join("")}</ol></section>` : ""}
+      ${(d.highlights || []).length ? `<section class="pd-block" style="--b:3"><h3>Key highlights</h3><div class="pd-highlights">${d.highlights.map((c) => `<div class="pd-hl"><span aria-hidden="true">★</span><p>${esc(c)}</p></div>`).join("")}</div></section>` : ""}
+      ${(d.outcomes || []).length ? `<section class="pd-block" style="--b:3"><h3>Outcomes</h3><ul class="pd-outcomes">${d.outcomes.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></section>` : ""}
+      ${(it.tools || []).length ? `<section class="pd-block" style="--b:4"><h3>Tech stack</h3>${chips(it.tools)}</section>` : ""}
+      ${d.link ? `<a class="button button-primary pd-link" href="${esc(d.link.href)}"${ext(true)}>${esc(d.link.label || "Visit project")} <span aria-hidden="true">↗</span></a>` : ""}`;
   };
 
   /* ── Experience ───────────────────────────────────── */
@@ -127,12 +153,15 @@
         <div class="career-track">
           ${(e.roles || []).map((r, i) => `
           <article class="career-step${r.current ? " current" : ""}">
-            <div class="career-era"><span class="career-index">CHAPTER ${pad(i + 1)}</span><span class="career-period">${esc(r.period)}</span></div>
+            <div class="career-era"><span class="career-index">CHAPTER ${pad((e.roles || []).length - i)}</span><span class="career-period">${esc(r.period)}</span></div>
             <span class="career-node" aria-hidden="true"></span>
             <div class="career-content"><h3>${esc(r.title)}</h3><div class="career-company">${esc(r.company)}</div>
               ${r.current ? `<span class="career-status">${esc(r.currentLabel || "Current role")}</span>` : ""}
               <p>${esc(r.description)}</p>
-              ${chips(r.tools)}
+              ${(r.responsibilities || []).length ? `
+              <button class="career-more" type="button" aria-expanded="false" aria-controls="career-resp-${i}"><span class="cm-label">Show responsibilities</span><span class="cm-count">${r.responsibilities.length}</span><span class="cm-chev" aria-hidden="true"></span></button>
+              <div class="career-resp" id="career-resp-${i}"><div class="career-resp-inner"><ul>${r.responsibilities.map((x, k) => `<li style="--k:${k}">${esc(x)}</li>`).join("")}</ul></div></div>` : ""}
+              <div class="career-tech"><span class="career-tech-label">Technologies</span>${chips(r.tools)}</div>
             </div>
           </article>`).join("")}
         </div>
