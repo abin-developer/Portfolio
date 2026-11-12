@@ -5,6 +5,12 @@ window.PORTFOLIO.skills = {
   title: ["Tools I work with."],
   intro: "A focused toolkit for building, integrating, testing, and shipping modern applications.",
   backgroundText: "BUILD · INTEGRATE · TEST · SHIP · ",
+  // Heading for the "Toolkit at a glance" tool cloud (built from the groups below)
+  toolkit: {
+    kicker: "Toolkit at a glance",
+    title: ["Every tool,", "one view."],
+    intro: "Hover a tool to see its family, pick a category to highlight it, or click a tool to jump to its details.",
+  },
   note: "Tip: tags marked with ↗ on hover open the tool’s official site in a new tab.",
   // Tool names that also appear in js/data/tool-links.js become links automatically
   groups: [

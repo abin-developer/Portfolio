@@ -16,13 +16,14 @@ window.PORTFOLIO.projects = {
       area: "WELL-BEING",
       client: "InApp · Miracle Foundation",
       name: "ThriveWell",
-      categories: ["web"],
+      categories: ["web", "mobile"],
       description: "Contributed to ThriveScale and FosterShare, supporting child and family well-being in India and the US. ThriveScale helps case workers and prevention partners manage assessments, follow-ups, and progress reporting; FosterShare supports foster parents with daily logs and well-being tracking. Mentored junior engineers while delivering frontend features, demos, tests, and API integrations.",
       tools: ["React", "Material UI", "Formik", "Yup", "REST", "i18next", "Jest"],
       // Shown in the project details panel (View details).
       details: {
         role: "Frontend engineer · Mentor",
-        platform: "Web application",
+        platform: "Web + cross-platform mobile",
+        link: { label: "Visit ThriveWell", href: "https://www.thrivewellapp.com/" },
         overview: "A platform supporting child and family well-being in India and the US, made up of two products: ThriveScale and FosterShare.",
         modules: [
           { name: "ThriveScale", text: "Helps case workers and prevention partners manage assessments, follow-ups, and progress reporting." },
@@ -49,12 +50,12 @@ window.PORTFOLIO.projects = {
       area: "WORKFORCE LEARNING",
       client: "InApp · Mid-Ohio Foodbank",
       name: "ReadySkill",
-      categories: ["web", "mobile"],
-      description: "Built frontend features for a learner mobile app and partner portal connecting students to education providers, courses, employers, and social-service partners. The platform also supports practical services such as childcare and food assistance so learners can pursue training. Contributed to demos, unit tests, defect fixes, and cross-team integration.",
+      categories: ["web"],
+      description: "Built frontend features for a workforce-learning platform connecting students to education providers, courses, employers, and social-service partners. The platform also supports practical services such as childcare and food assistance so learners can pursue training. Contributed to demos, unit tests, defect fixes, and cross-team integration.",
       tools: ["React", "SignalR", "Azure DevOps", "Jira"],
       details: {
         role: "Frontend engineer",
-        platform: "Learner mobile app + partner web portal",
+        platform: "Web application",
         overview: "A workforce-learning platform connecting students to education providers, courses, employers, and social-service partners. It also supports practical services such as childcare and food assistance so learners can pursue training.",
         modules: [
           { name: "Learner mobile app", text: "Used by students to find and follow education and training opportunities." },
