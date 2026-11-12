@@ -452,7 +452,7 @@
 
     /* Toolkit cloud */
     .toolcloud-band { position: relative; padding: 76px 0 84px; border-top: 1px solid var(--line); background: var(--bg); overflow: hidden; }
-    .toolcloud-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+    .toolcloud-section-head { margin-bottom: 26px; }
     .toolcloud-hint { margin: 0; color: var(--muted); font-size: 12px; }
     .toolcloud-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
     .legend-btn { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: transparent; font: inherit; font-size: 12px; cursor: pointer; transition: color .25s, border-color .25s, background .25s, transform .25s; }
@@ -1025,6 +1025,24 @@
     .career-tech .chips { margin-top: 0; }
     .career-content .career-tech .chips { margin-top: 0; }
     @media (prefers-reduced-motion: reduce) { .career-resp, .career-resp li { transition: none; } }
+
+    /* Project card actions: details + live site */
+    .project-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; }
+    .project .project-actions { grid-column: 2; grid-row: 4; }
+    .project-actions .project-more { margin-top: 0; }
+    .project-site { display: inline-flex; align-items: center; gap: 6px; padding: 8px 4px; color: var(--muted); font-size: 12px; font-weight: 700; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+    .project-site span { display: inline-block; transition: transform .25s cubic-bezier(.3,1.6,.5,1); }
+    .project-site:hover { color: var(--lime); border-color: currentColor; }
+    .project-site:hover span { transform: translate(2px, -2px); }
+    .project-site:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
+    @media (max-width: 600px) { .project .project-actions { grid-column: 1; grid-row: 5; } }
+
+    /* Experience: company website links */
+    .company-link { display: inline-flex; align-items: baseline; gap: 5px; color: inherit; background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px; padding-bottom: 1px; transition: background-size .35s cubic-bezier(.2,.7,.2,1), color .2s; }
+    .company-link span { font-size: .9em; opacity: .55; transition: transform .25s cubic-bezier(.3,1.6,.5,1), opacity .2s; }
+    .company-link:hover { color: var(--lime); background-size: 100% 1px; }
+    .company-link:hover span { opacity: 1; transform: translate(2px, -2px); }
+    .company-link:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
   </style>
 </head>
 <body>
@@ -1651,7 +1669,9 @@
         const band = document.createElement("section");
         band.className = "toolcloud-band";
         band.setAttribute("aria-label", "Toolkit overview");
-        band.innerHTML = `<div class="shell"><div class="toolcloud-head"><div class="section-kicker">Toolkit at a glance</div><p class="toolcloud-hint">Hover a tool to see its family · pick a category to highlight it · click a tool for details</p></div><div class="toolcloud-legend" role="group" aria-label="Highlight tools by category"></div><div class="toolcloud-wrap"><svg class="toolcloud-lines" aria-hidden="true"></svg><ul class="toolcloud"></ul></div><p class="toolcloud-status" aria-live="polite"></p></div>`;
+        const tk = ((window.PORTFOLIO || {}).skills || {}).toolkit || { kicker: "Toolkit at a glance", title: ["Every tool,", "one view."], intro: "" };
+        const escT = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        band.innerHTML = `<div class="shell"><div class="section-head toolcloud-section-head"><div><div class="section-kicker">${escT(tk.kicker)}</div><h2 class="section-title">${(tk.title || []).map((t, n) => reduceMotion ? escT(t) : `<span class="line"><span style="--li:${n}">${escT(t)}</span></span>`).join(reduceMotion ? "<br>" : "")}</h2></div><p class="section-intro">${escT(tk.intro)}</p></div><div class="toolcloud-legend" role="group" aria-label="Highlight tools by category"></div><div class="toolcloud-wrap"><svg class="toolcloud-lines" aria-hidden="true"></svg><ul class="toolcloud"></ul></div><p class="toolcloud-status" aria-live="polite"></p></div>`;
         const legend = band.querySelector(".toolcloud-legend");
         const cloud = band.querySelector(".toolcloud");
         const wrap = band.querySelector(".toolcloud-wrap");
@@ -1686,6 +1706,11 @@
           li.appendChild(pill); cloud.appendChild(li); pills.push(pill);
         });
         contactSection.before(band);
+        const tkHead = band.querySelector(".section-head");
+        if (tkHead && !reduceMotion && "IntersectionObserver" in window) {
+          tkHead.classList.add("reveal", "reveal--clip");
+          new IntersectionObserver(([en], ob) => { if (en.isIntersecting) { tkHead.classList.add("is-visible"); ob.disconnect(); } }, { threshold: 0.2 }).observe(tkHead);
+        }
 
         let pinned = null;
         const drawLines = (hot) => {

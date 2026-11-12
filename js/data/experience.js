@@ -5,12 +5,13 @@ window.PORTFOLIO.experience = {
   title: ["A career in", "three chapters."],
   intro: "From learning the craft to helping teams deliver: a steady path through frontend engineering.",
   // Latest first. Set `current: true` on the present role. Chapter numbers count up from the oldest role.
-  // `responsibilities` appear behind a "Show responsibilities" toggle; `tools` are the role's technologies.
+  // `companyUrl` makes the company name a link. `responsibilities` appear behind a "Show responsibilities" toggle; `tools` are the role's technologies.
   roles: [
     {
-      period: "Dec 2022 \u2014 Present",
+      period: "Dec 2022 — Present",
       title: "Senior Software Engineer",
-      company: "InApp Information Technologies \u00b7 Technopark",
+      company: "InApp Information Technologies · Technopark",
+      companyUrl: "https://inapp.com/",
       current: true,
       currentLabel: "Current role",
       description: "Lead frontend delivery across product work while mentoring juniors and freshers. Contribute to task estimation, sprint planning, code reviews, demos, testing, and cross-team coordination.",
@@ -26,9 +27,10 @@ window.PORTFOLIO.experience = {
       tools: ["React", "JavaScript", "TypeScript", "Material UI", "Formik", "Yup", "i18next", "REST APIs", "Jest", "React Testing Library", "Git", "Azure DevOps", "Jira", "SonarQube", "Figma", "GitHub Copilot", "Claude"],
     },
     {
-      period: "Aug 2021 \u2014 Dec 2022",
+      period: "Aug 2021 — Dec 2022",
       title: "Software Engineer",
-      company: "InApp Information Technologies \u00b7 Technopark",
+      company: "InApp Information Technologies · Technopark",
+      companyUrl: "https://inapp.com/",
       description: "Expanded into React web and mobile projects: building responsive features, integrating REST APIs, clarifying requirements with client and backend teams, presenting demos, writing tests, and resolving defects.",
       responsibilities: [
         "Developed and maintained frontend features for client and internal applications.",
@@ -39,9 +41,10 @@ window.PORTFOLIO.experience = {
       tools: ["React", "JavaScript", "TypeScript", "Material UI", "Formik", "Yup", "REST APIs", "Git", "Azure DevOps", "Jira", "SonarQube"],
     },
     {
-      period: "Aug 2019 \u2014 Jul 2021",
+      period: "Aug 2019 — Jul 2021",
       title: "Software Associate",
       company: "Xcubated Business Solutions",
+      companyUrl: "https://www.xcubated.com/",
       description: "Started out building Angular frontend features for ATMA, learning delivery through hands-on implementation, unit testing, defect fixes, and close coordination with backend developers.",
       responsibilities: [
         "Developed frontend features for ATMA (Automatic Transition Management Application) using Angular 8, HTML, and CSS.",

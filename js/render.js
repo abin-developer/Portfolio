@@ -116,7 +116,10 @@
             <h3>${esc(it.name)}</h3>
             <p>${esc(it.description)}</p>
             ${chips(it.tools)}
+            ${(it.details || it.link) ? `<div class="project-actions">` : ""}
             ${it.details ? `<button class="project-more" type="button" data-project="${i}" aria-haspopup="dialog">View details <span aria-hidden="true">→</span></button>` : ""}
+            ${it.details?.link ? `<a class="project-site" href="${esc(it.details.link.href)}"${ext(true)}>${esc(it.details.link.label || "Visit site")} <span aria-hidden="true">↗</span></a>` : ""}
+            ${(it.details || it.link) ? `</div>` : ""}
           </article>`).join("")}
         </div>
       </div>`;
@@ -155,7 +158,7 @@
           <article class="career-step${r.current ? " current" : ""}">
             <div class="career-era"><span class="career-index">CHAPTER ${pad((e.roles || []).length - i)}</span><span class="career-period">${esc(r.period)}</span></div>
             <span class="career-node" aria-hidden="true"></span>
-            <div class="career-content"><h3>${esc(r.title)}</h3><div class="career-company">${esc(r.company)}</div>
+            <div class="career-content"><h3>${esc(r.title)}</h3><div class="career-company">${r.companyUrl ? `<a class="company-link" href="${esc(r.companyUrl)}"${ext(true)} aria-label="${esc(r.company)} website (opens in a new tab)">${esc(r.company)}<span aria-hidden="true">↗</span></a>` : esc(r.company)}</div>
               ${r.current ? `<span class="career-status">${esc(r.currentLabel || "Current role")}</span>` : ""}
               <p>${esc(r.description)}</p>
               ${(r.responsibilities || []).length ? `
